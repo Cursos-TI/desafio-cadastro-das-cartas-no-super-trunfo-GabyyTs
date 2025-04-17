@@ -16,9 +16,10 @@ int main() {
     char nome1 [20];
     char nome2 [20];
     unsigned long int populacao1, populacao2; //Mudança: a variável era int, agora vai ser unsigned long int
+    int resultadoPopulacao, resultadoArea, resultadoPib, resultadoPt, resultadoDp, resultadoPpc, resultadoSp;
     int pontost1, pontost2;
     float area1, area2, pib1, pib2;
-    float dp1, dp2, ppc1, ppc2, a = 1;
+    float dp1, dp2, ppc1, ppc2;
     float superpoder1, superpoder2;
     
     // Cadastro das Cartas:
@@ -83,13 +84,18 @@ int main() {
     dp2 = (float) populacao2 / area2;
     ppc2 = (float) pib2 / populacao2;
 
-    //Cálculos do Super Poder da Carta 1 (somatória de todos os atributos, sendo o inverso da densidade populacional)
-    superpoder1 = (float) populacao1 + area1 + pib1 + pontost1 + ppc1 + (a / dp1);
+    //Cálculos do Super Poder das Carta 1 e 2 (somatória de todos os atributos, sendo o inverso da densidade populacional)
+    superpoder1 = (float) populacao1 + area1 + pib1 + pontost1 + ppc1 + (1 / dp1);
+    superpoder2 = (float) populacao2 + area2 + pib2 + pontost2 + ppc2 + (1 / dp2);
 
-    //Cálculos do Super Poder da Carta 2 (somatória de todos os atributos, sendo o inverso da densidade populacional)
-    superpoder2 = (float) populacao2 + area2 + pib2 + pontost2 + ppc2 + (a / dp2);
-    
     //COMPARAÇÃO DAS CARTAS
+    resultadoArea = area1 > area2;
+    resultadoPopulacao = populacao1 > populacao2;
+    resultadoPib = pib1 > pib2;
+    resultadoPt = pontost1 > pontost2;
+    resultadoDp = dp1 < dp2;
+    resultadoPpc = ppc1 > ppc2;
+    resultadoSp = superpoder1 > superpoder2;
 
     //Exibição da carta 1
     //CARTA 1
@@ -118,6 +124,17 @@ int main() {
     printf("Densidade populacional: %f hab/km²\n", dp2);
     printf("PIB per capita: %f reais\n", ppc2);
     printf("Super Poder: %f\n", superpoder2);
+
+    //EXIBIÇÃO DAS COMPARAÇÕES
+    printf("\nComparação de Cartas\n");
+    printf("0 = Carta 2 ganhou - 1 = Carta 1 ganhou\n");
+    printf("Área: %d\n", resultadoArea);
+    printf("População: %d\n", resultadoPopulacao);
+    printf("PIB: %d\n", resultadoPib);
+    printf("Pontos Turísticos: %d\n", resultadoPt);
+    printf("Densidade Populacional: %d\n", resultadoDp);
+    printf("PIB per Capita: %d\n", resultadoPpc);
+    printf("Super Poder: %d\n", resultadoSp);
 
     return 0;
 }
